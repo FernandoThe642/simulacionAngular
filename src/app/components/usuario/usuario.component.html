@@ -1,0 +1,47 @@
+<div class="formulario-contenedor">
+<form (ngSubmit)="buscarUsuario()">
+    <fieldset>
+    <label for="cedula-usuario">Cédula de Usuario:</label>
+    <input type="text" [(ngModel)]="cedulaUsuario" name="cedulaUsuario" required>
+    </fieldset>
+    <button type="submit">Buscar</button>
+</form>
+</div>
+
+<p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+
+<div *ngIf="usuario">
+<h2>Datos del Cliente</h2>
+<p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+<p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
+<p><strong>Dirección:</strong> {{ usuario.direccion }}</p>
+
+<h3>Consumos</h3>
+<table border="1">
+    <tr>
+    <th>Fecha</th>
+    <th>Consumo (kWh)</th>
+    <th>Monto</th>
+    </tr>
+    <tr *ngFor="let consumo of usuario.consumos">
+    <td>{{ consumo.fecha }}</td>
+    <td>{{ consumo.consumoKwh }}</td>
+    <td>{{ consumo.monto }}</td>
+    </tr>
+</table>
+
+<h3>Deudas</h3>
+<table border="1">
+    <tr>
+    <th>Fecha Vencimiento</th>
+    <th>Estado</th>
+    <th>Monto</th>
+    </tr>
+    <tr *ngFor="let deuda of usuario.deudas">
+    <td>{{ deuda.fechaVencimiento }}</td>
+    <td>{{ deuda.estado }}</td>
+    <td>{{ deuda.monto }}</td>
+    </tr>
+</table>
+</div>
+  
